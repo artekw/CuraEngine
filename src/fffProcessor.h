@@ -615,6 +615,7 @@ private:
             int extrusionWidth = config.extrusionWidth;
             if (layerNr == 0)
                 extrusionWidth = config.layer0extrusionWidth;
+				gcode.setExtrusion(config.initialLayerThickness, config.filamentDiameter, config.layer0flow);
             for(Polygons outline : part->skinOutline.splitIntoParts())
             {
                 int bridge = -1;
