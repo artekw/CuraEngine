@@ -252,6 +252,7 @@ private:
                 int extrusionWidth = config.extrusionWidth;
                 if (layerNr == 0)
                     extrusionWidth = config.layer0extrusionWidth;
+                    gcode.setExtrusion(config.initialLayerThickness, config.filamentDiameter, config.layer0flow);
                 generateInsets(layer, extrusionWidth, insetCount);
 
                 for(unsigned int partNr=0; partNr<layer->parts.size(); partNr++)
@@ -300,6 +301,7 @@ private:
                     int extrusionWidth = config.extrusionWidth;
                     if (layerNr == 0)
                         extrusionWidth = config.layer0extrusionWidth;
+                        gcode.setExtrusion(config.initialLayerThickness, config.filamentDiameter, config.layer0flow);
                     generateSkins(layerNr, storage.volumes[volumeIdx], extrusionWidth, config.downSkinCount, config.upSkinCount, config.infillOverlap);
                     generateSparse(layerNr, storage.volumes[volumeIdx], extrusionWidth, config.downSkinCount, config.upSkinCount);
 
@@ -433,6 +435,7 @@ private:
             int extrusionWidth = config.extrusionWidth;
             if (layerNr == 0)
                 extrusionWidth = config.layer0extrusionWidth;
+                gcode.setExtrusion(config.initialLayerThickness, config.filamentDiameter, config.layer0flow);
             if (static_cast<int>(layerNr) < config.initialSpeedupLayers)
             {
                 int n = config.initialSpeedupLayers;
